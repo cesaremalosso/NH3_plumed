@@ -1,0 +1,38 @@
+
+include in.partitions
+include in.seeds
+
+log log1.log.${p_id}
+
+units metal       
+atom_style atomic
+#box tilt large
+read_restart final0.restart.${p_id}
+pair_style deepmd ../../../frozen_model.pb
+pair_coeff * * 
+
+neighbor        2.0 bin
+neigh_modify    every 10 delay 0 check no
+
+mass 1 1       # H
+mass 2 14      # N
+
+timestep 0.2e-3
+
+thermo 50
+
+fix pl all plumed plumedfile plumed.dat outfile p.log1.${p_id}
+thermo_style custom step time ke pe etotal temp press density vol
+
+fix thermo_print all print 50 "$(step) $(pe) $(ke) $(etotal) $(temp) $(press) $(vol)" append thermo1.out.${p_id} screen no title "#step pe ke etotal temp press vol"
+
+# equilibration
+dump 1 all custom 500 dump1.lammpstrj.${p_id} id type xu yu zu
+fix npt_run all npt temp 900.0 900.0 $(100.0*dt) iso 900000.0 900000.0 $(1000.0*dt)
+fix 4 all momentum 10000 linear 1 1 1 angular
+run 10000000 
+unfix npt_run
+undump 1
+
+write_restart final1.restart.${p_id} 
+write_data final1.data.${p_id}
