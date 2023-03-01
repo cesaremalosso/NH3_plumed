@@ -21,18 +21,18 @@ PLUMED:   with label vol
 PLUMED: Action CUSTOM
 PLUMED:   with label intEne
 PLUMED:   with arguments energy vol
-PLUMED:   with function : x+0.06022140857*600000*y
+PLUMED:   with function : x+0.06022140857*400000*y
 PLUMED:   with variables : x y
-PLUMED:   function as parsed by lepton: (x)+(36132.8*(y))
+PLUMED:   function as parsed by lepton: (x)+(24088.6*(y))
 PLUMED:   derivatives as computed by lepton:
 PLUMED:     1
-PLUMED:     36132.8
+PLUMED:     24088.6
 PLUMED: Action ECV_MULTITHERMAL
 PLUMED:   with label ecv1
 PLUMED:   with arguments intEne
-PLUMED:   temperature = 400, beta = 0.300681
+PLUMED:   temperature = 600, beta = 0.200454
 PLUMED:   added component to this action:  ecv1.intEne 
-PLUMED:   targeting a temperature range from TEMP_MIN=200 to TEMP_MAX=700
+PLUMED:   targeting a temperature range from TEMP_MIN=300 to TEMP_MAX=1000
 PLUMED: Action OPES_EXPANDED
 PLUMED:   with label opes
 PLUMED:   with arguments ecv1.intEne
@@ -64,17 +64,17 @@ PLUMED: Please read and cite where appropriate!
 PLUMED: Finished setup
 PLUMED: 
 PLUMED: Action OPES_EXPANDED
-PLUMED:    estimated TEMP spacing = 0.0208107
+PLUMED:    estimated TEMP spacing = 0.0145414
 PLUMED:     (spacing is in beta, not in temperature)
-PLUMED:   *  21 temperatures for ECV_MULTITHERMAL
-PLUMED:  ->  21 DeltaFs in total
+PLUMED:   *  20 temperatures for ECV_MULTITHERMAL
+PLUMED:  ->  20 DeltaFs in total
 PLUMED: Finished initialization
 PLUMED: 
 PLUMED:                                               Cycles        Total      Average      Minimum      Maximum
-PLUMED:                                                    1  2125.317630  2125.317630  2125.317630  2125.317630
-PLUMED: 1 Prepare dependencies                      10000001     6.278997     0.000001     0.000000     0.000020
-PLUMED: 2 Sharing data                              10000001     3.141995     0.000000     0.000000     0.000048
-PLUMED: 3 Waiting for data                          10000001     6.774888     0.000001     0.000000     0.000077
-PLUMED: 4 Calculating (forward loop)                10000001   145.043830     0.000015     0.000010     0.002082
-PLUMED: 5 Applying (backward loop)                  10000001    92.348225     0.000009     0.000007     0.000064
-PLUMED: 6 Update                                    10000001  1804.174653     0.000180     0.000000    17.734789
+PLUMED:                                                    1  2182.961867  2182.961867  2182.961867  2182.961867
+PLUMED: 1 Prepare dependencies                      10000001     6.626599     0.000001     0.000000     0.000172
+PLUMED: 2 Sharing data                              10000001     3.164074     0.000000     0.000000     0.000052
+PLUMED: 3 Waiting for data                          10000001     6.590819     0.000001     0.000000     0.000047
+PLUMED: 4 Calculating (forward loop)                10000001   142.175791     0.000014     0.000010     0.002076
+PLUMED: 5 Applying (backward loop)                  10000001    89.941674     0.000009     0.000007     0.000156
+PLUMED: 6 Update                                    10000001  1866.890667     0.000187     0.000000    17.263413
