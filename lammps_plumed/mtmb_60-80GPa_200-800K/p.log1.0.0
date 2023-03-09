@@ -1,0 +1,78 @@
+PLUMED: PLUMED is starting
+PLUMED: Version: 2.8.1 (git: 290eebcee) compiled on Feb  7 2023 at 17:45:58
+PLUMED: Please cite these papers when using PLUMED [1][2]
+PLUMED: For further information see the PLUMED web page at http://www.plumed.org
+PLUMED: Root: /m100/home/userexternal/cmalosso/plumed2/build_2.8.1/lib/plumed
+PLUMED: For installed feature, see /m100/home/userexternal/cmalosso/plumed2/build_2.8.1/lib/plumed/src/config/config.txt
+PLUMED: Molecular dynamics engine: LAMMPS
+PLUMED: Precision of reals: 8
+PLUMED: Running over 1 node
+PLUMED: Number of threads: 1
+PLUMED: Cache line size: 512
+PLUMED: Number of atoms: 256
+PLUMED: GROMACS-like replica exchange is on
+PLUMED: File suffix: .0
+PLUMED: FILE: plumed.dat
+PLUMED: Action ENERGY
+PLUMED:   with label energy
+PLUMED:   Bibliography [3][4]
+PLUMED: Action VOLUME
+PLUMED:   with label vol
+PLUMED: Action ECV_MULTITHERMAL_MULTIBARIC
+PLUMED:   with label ecv1
+PLUMED:   with arguments energy vol
+PLUMED:   temperature = 500, beta = 0.240545
+PLUMED:   added component to this action:  ecv1.energy 
+PLUMED:   added component to this action:  ecv1.vol 
+PLUMED:   running at TEMP=500 and PRESSURE=42155
+PLUMED:   targeting a temperature range from TEMP_MIN=250 to TEMP_MAX=800
+PLUMED:    and a pressure range from PRESSURE_MIN=36132.8 to PRESSURE_MAX=48177.1
+PLUMED:  -- NO_GEOM_SPACING: inverse temperatures will be linearly spaced
+PLUMED: Action OPES_EXPANDED
+PLUMED:   with label opes
+PLUMED:   with arguments ecv1.energy ecv1.vol
+PLUMED:   added component to this action:  opes.bias 
+PLUMED:   updating the bias with PACE = 200
+PLUMED:   initial unbiased OBSERVATION_STEPS = 500 (in units of PACE)
+PLUMED:  -- WALKERS_MPI: if multiple replicas are present, they will share the same bias via MPI
+PLUMED:   using multiple walkers
+PLUMED:     number of walkers: 8
+PLUMED:     walker rank: 0
+PLUMED:   Bibliography: [5]
+PLUMED: Action PRINT
+PLUMED:   with label @4
+PLUMED:   with stride 250
+PLUMED:   with arguments energy vol ecv1.energy ecv1.vol opes.bias
+PLUMED:   on file COLVAR
+PLUMED:   with format  %f
+PLUMED: END FILE: plumed.dat
+PLUMED: Timestep: 0.000200
+PLUMED: KbT has not been set by the MD engine
+PLUMED: It should be set by hand where needed
+PLUMED: Relevant bibliography:
+PLUMED:   [1] The PLUMED consortium, Nat. Methods 16, 670 (2019)
+PLUMED:   [2] Tribello, Bonomi, Branduardi, Camilloni, and Bussi, Comput. Phys. Commun. 185, 604 (2014)
+PLUMED:   [3] Bartels and Karplus, J. Phys. Chem. B 102, 865 (1998)
+PLUMED:   [4] Bonomi and Parrinello, J. Comp. Chem. 30, 1615 (2009)
+PLUMED:   [5] M. Invernizzi, P.M. Piaggi, and M. Parrinello, Phys. Rev. X 10, 041034 (2020)
+PLUMED: Please read and cite where appropriate!
+PLUMED: Finished setup
+PLUMED: 
+PLUMED: Action OPES_EXPANDED
+PLUMED:    estimated TEMP spacing = 0.0150073
+PLUMED:     (spacing is on beta, not on temperature)
+PLUMED:    estimated PRESSURE spacing = 348.922
+PLUMED:     (spacing is in beta0 units)
+PLUMED:   *  23 temperatures for ECV_MULTITHERMAL_MULTIBARIC
+PLUMED:   *   9 pressures for ECV_MULTITHERMAL_MULTIBARIC
+PLUMED:  -> 207 DeltaFs in total
+PLUMED: Finished initialization
+PLUMED: 
+PLUMED:                                               Cycles        Total      Average      Minimum      Maximum
+PLUMED:                                                    1  1620.306531  1620.306531  1620.306531  1620.306531
+PLUMED: 1 Prepare dependencies                      10000001     6.619717     0.000001     0.000000     0.000032
+PLUMED: 2 Sharing data                              10000001     3.439932     0.000000     0.000000     0.000053
+PLUMED: 3 Waiting for data                          10000001     7.129633     0.000001     0.000000     0.000029
+PLUMED: 4 Calculating (forward loop)                10000001   198.513626     0.000020     0.000008     0.001308
+PLUMED: 5 Applying (backward loop)                  10000001    71.246580     0.000007     0.000005     0.001008
+PLUMED: 6 Update                                    10000001  1263.496260     0.000126     0.000000     6.207379
